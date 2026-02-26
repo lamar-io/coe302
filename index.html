@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COE 302 – Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #f4a7b9; --rose-light: #fce4ec; --rose-deep: #e47fa0;
+  --mint: #a8d8c8; --mint-light: #e0f4ef; --mint-deep: #6fbba6;
+  --lavender: #c5b8e8; --lavender-light: #ede8f9; --lavender-deep: #9b8bd0;
+  --peach: #f7c59f; --peach-light: #fdf0e4; --peach-deep: #e8a06a;
+  --sky: #a8cfe8; --sky-light: #deeef9; --sky-deep: #6aabcf;
+  --butter: #f5e6a3; --butter-light: #fdf8e1;
+  --cream: #fdf6ee; --text-dark: #2d2535; --text-mid: #5a4f6a; --text-light: #8a7f9a;
+  --white: #ffffff;
+  --card-shadow: 0 4px 20px rgba(160,130,180,0.12);
+  --card-shadow-hover: 0 8px 32px rgba(160,130,180,0.22);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text-dark); min-height:100vh; }
+
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,246,238,0.92); backdrop-filter:blur(12px);
+  border-bottom:1.5px solid var(--lavender-light);
+  padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:60px;
+}
+.nav-brand { font-family:'Lora',serif; font-weight:600; font-size:1.15rem; }
+.nav-brand span { color:var(--lavender-deep); }
+.nav-links { display:flex; gap:0.4rem; }
+.nav-btn {
+  padding:6px 14px; border-radius:20px; border:none; cursor:pointer;
+  font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:500;
+  background:transparent; color:var(--text-mid); transition:all 0.2s;
+}
+.nav-btn.active, .nav-btn:hover { background:var(--lavender-light); color:var(--lavender-deep); }
+
+.page { display:none; }
+.page.active { display:block; }
+
+/* HERO */
+.hero {
+  padding:4rem 2rem 2rem; text-align:center;
+  background:linear-gradient(160deg,var(--lavender-light) 0%,var(--mint-light) 50%,var(--rose-light) 100%);
+  border-bottom:2px solid var(--lavender-light);
+}
+.hero-tag {
+  display:inline-block; padding:4px 14px; border-radius:20px;
+  background:var(--lavender); color:var(--lavender-deep);
+  font-size:0.75rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:1rem;
+}
+.hero h1 { font-family:'Lora',serif; font-size:2.8rem; font-weight:600; line-height:1.2; margin-bottom:0.6rem; }
+.hero h1 em { color:var(--lavender-deep); font-style:italic; }
+.hero p { font-size:1rem; color:var(--text-mid); max-width:540px; margin:0 auto 2rem; }
+.hero-cards { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem; }
+.hero-card {
+  background:var(--white); border-radius:16px; padding:1.2rem 1.6rem;
+  box-shadow:var(--card-shadow); cursor:pointer; transition:all 0.25s;
+  border:2px solid transparent; min-width:170px; text-align:left;
+}
+.hero-card:hover { transform:translateY(-3px); box-shadow:var(--card-shadow-hover); }
+.hero-card.rose { border-color:var(--rose); }
+.hero-card.mint { border-color:var(--mint); }
+.hero-card.lavender { border-color:var(--lavender); }
+.hero-card.peach { border-color:var(--peach); }
+.hero-card.sky { border-color:var(--sky); }
+.hc-icon { font-size:1.5rem; margin-bottom:0.4rem; }
+.hc-title { font-weight:600; font-size:0.9rem; }
+.hc-sub { font-size:0.75rem; color:var(--text-light); margin-top:2px; }
+
+/* GUIDE */
+.guide-layout { max-width:1100px; margin:0 auto; padding:2rem; }
+.section-header { margin:2.5rem 0 1rem; display:flex; align-items:center; gap:0.8rem; }
+.section-pill { padding:4px 14px; border-radius:20px; font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+.pill-rose { background:var(--rose-light); color:var(--rose-deep); }
+.pill-mint { background:var(--mint-light); color:var(--mint-deep); }
+.pill-lavender { background:var(--lavender-light); color:var(--lavender-deep); }
+.pill-peach { background:var(--peach-light); color:var(--peach-deep); }
+.pill-sky { background:var(--sky-light); color:var(--sky-deep); }
+.pill-butter { background:var(--butter-light); color:#a08030; }
+.section-title { font-family:'Lora',serif; font-size:1.5rem; font-weight:600; }
+
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.2rem; }
+.card {
+  background:var(--white); border-radius:16px; padding:1.4rem;
+  box-shadow:var(--card-shadow); border:1.5px solid transparent; transition:all 0.22s;
+}
+.card:hover { transform:translateY(-2px); box-shadow:var(--card-shadow-hover); }
+.card.rose-card { border-color:var(--rose-light); }
+.card.mint-card { border-color:var(--mint-light); }
+.card.lavender-card { border-color:var(--lavender-light); }
+.card.peach-card { border-color:var(--peach-light); }
+.card.sky-card { border-color:var(--sky-light); }
+.card.butter-card { border-color:var(--butter-light); }
+.card h3 { font-weight:600; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+.card p, .card li { font-size:0.85rem; color:var(--text-mid); line-height:1.6; }
+.card ul { padding-left:1.2rem; margin-top:0.4rem; }
+.card li { margin-bottom:0.2rem; }
+
+.diagram { background:var(--cream); border-radius:12px; padding:1rem; margin-top:0.8rem; font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--text-mid); line-height:1.8; overflow-x:auto; }
+.diagram .label { color:var(--lavender-deep); font-weight:700; }
+.diagram .highlight { color:var(--rose-deep); font-weight:700; }
+.diagram .value { color:var(--mint-deep); font-weight:700; }
+
+.visual-box { border-radius:12px; padding:1rem; margin-top:0.8rem; display:flex; flex-direction:column; gap:0.5rem; }
+.vb-rose { background:var(--rose-light); } .vb-mint { background:var(--mint-light); }
+.vb-lavender { background:var(--lavender-light); } .vb-peach { background:var(--peach-light); }
+.vb-sky { background:var(--sky-light); } .vb-butter { background:var(--butter-light); }
+
+.flow-row { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+.flow-box { padding:4px 10px; border-radius:8px; font-size:0.75rem; font-weight:600; white-space:nowrap; }
+.fb-rose { background:var(--rose); color:#8b3040; }
+.fb-mint { background:var(--mint); color:#2d6b58; }
+.fb-lavender { background:var(--lavender); color:#4a3880; }
+.fb-peach { background:var(--peach); color:#7a4518; }
+.fb-sky { background:var(--sky); color:#1a5a7a; }
+.fb-butter { background:var(--butter); color:#6a5010; }
+.flow-arrow { color:var(--text-light); font-size:1rem; }
+
+.formula-box {
+  background:linear-gradient(135deg,var(--lavender-light),var(--mint-light));
+  border-radius:12px; padding:1rem; margin-top:0.8rem; text-align:center;
+  border:1.5px solid var(--lavender);
+}
+.formula-box .formula { font-family:'Space Mono',monospace; font-size:1rem; color:var(--lavender-deep); font-weight:700; }
+.formula-box .formula-desc { font-size:0.75rem; color:var(--text-mid); margin-top:0.4rem; }
+
+.wide-card { grid-column:1/-1; }
+
+.table-visual { width:100%; border-collapse:collapse; font-size:0.8rem; margin-top:0.6rem; }
+.table-visual th { background:var(--lavender-light); color:var(--lavender-deep); padding:6px 10px; text-align:left; font-weight:600; }
+.table-visual td { padding:6px 10px; border-bottom:1px solid var(--cream); }
+.table-visual tr:nth-child(even) td { background:rgba(197,184,232,0.08); }
+
+.tag-row { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; }
+.tag { padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:600; }
+
+.timeline { display:flex; flex-direction:column; gap:0; margin-top:0.8rem; border-left:3px solid var(--lavender); padding-left:1rem; }
+.tl-step { position:relative; padding:0.5rem 0; }
+.tl-step::before { content:''; position:absolute; left:-1.35rem; top:0.8rem; width:10px; height:10px; border-radius:50%; background:var(--lavender-deep); }
+.tl-step .tl-title { font-weight:600; font-size:0.82rem; }
+.tl-step .tl-desc { font-size:0.78rem; color:var(--text-mid); margin-top:1px; }
+
+.accordion { margin-bottom:0.5rem; border-radius:12px; overflow:hidden; border:1.5px solid var(--lavender-light); }
+.accordion-head {
+  padding:0.9rem 1.2rem; background:var(--white); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  font-weight:600; font-size:0.88rem; transition:background 0.2s; user-select:none;
+}
+.accordion-head:hover { background:var(--lavender-light); }
+.accordion-head .acc-icon { transition:transform 0.3s; font-size:0.75rem; color:var(--text-light); }
+.accordion-head.open .acc-icon { transform:rotate(180deg); }
+.accordion-body { display:none; padding:1rem 1.2rem; background:var(--cream); border-top:1px solid var(--lavender-light); font-size:0.84rem; color:var(--text-mid); line-height:1.7; }
+.accordion-body.open { display:block; }
+.accordion-body ul { padding-left:1.2rem; }
+.accordion-body li { margin-bottom:0.3rem; }
+
+/* PRACTICE */
+.practice-layout { max-width:900px; margin:0 auto; padding:2rem; }
+.practice-header { text-align:center; padding:2rem 1rem 1.5rem; }
+.practice-header h2 { font-family:'Lora',serif; font-size:2rem; }
+.practice-header p { color:var(--text-mid); font-size:0.9rem; margin-top:0.4rem; }
+
+.quiz-controls { display:flex; gap:0.6rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+.quiz-filter-btn {
+  padding:7px 16px; border-radius:20px; border:2px solid transparent;
+  cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:500;
+  transition:all 0.2s; background:var(--white);
+}
+.qfb-all { border-color:var(--lavender); color:var(--lavender-deep); }
+.qfb-all.active, .qfb-all:hover { background:var(--lavender); color:#4a3880; }
+.qfb-io { border-color:var(--rose); color:var(--rose-deep); }
+.qfb-io.active, .qfb-io:hover { background:var(--rose); color:#8b3040; }
+.qfb-intr { border-color:var(--sky); color:var(--sky-deep); }
+.qfb-intr.active, .qfb-intr:hover { background:var(--sky); color:#1a5a7a; }
+.qfb-mem { border-color:var(--mint); color:var(--mint-deep); }
+.qfb-mem.active, .qfb-mem:hover { background:var(--mint); color:#2d6b58; }
+.qfb-cache { border-color:var(--peach); color:var(--peach-deep); }
+.qfb-cache.active, .qfb-cache:hover { background:var(--peach); color:#7a4518; }
+.qfb-pic { border-color:var(--butter); color:#7a6010; }
+.qfb-pic.active, .qfb-pic:hover { background:var(--butter); color:#4a3800; }
+
+.score-bar {
+  background:var(--white); border-radius:16px; padding:1rem 1.5rem;
+  box-shadow:var(--card-shadow); margin-bottom:1.5rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;
+}
+.score-text { font-weight:600; font-size:0.9rem; }
+.score-nums { font-family:'Space Mono',monospace; font-size:1.1rem; color:var(--lavender-deep); }
+.score-prog { flex:1; min-width:120px; height:8px; background:var(--lavender-light); border-radius:10px; overflow:hidden; }
+.score-fill { height:100%; background:linear-gradient(90deg,var(--mint),var(--lavender-deep)); border-radius:10px; transition:width 0.5s ease; }
+
+.q-card {
+  background:var(--white); border-radius:16px; padding:1.4rem;
+  box-shadow:var(--card-shadow); margin-bottom:1.2rem;
+  border-left:4px solid transparent; transition:all 0.25s;
+}
+.q-card.topic-io { border-left-color:var(--rose); }
+.q-card.topic-intr { border-left-color:var(--sky); }
+.q-card.topic-mem { border-left-color:var(--mint); }
+.q-card.topic-cache { border-left-color:var(--peach); }
+.q-card.topic-pic { border-left-color:var(--butter); }
+
+.q-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:0.8rem; gap:0.5rem; }
+.q-badge { font-size:0.68rem; font-weight:700; padding:3px 10px; border-radius:12px; text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap; }
+.qb-io { background:var(--rose-light); color:var(--rose-deep); }
+.qb-intr { background:var(--sky-light); color:var(--sky-deep); }
+.qb-mem { background:var(--mint-light); color:var(--mint-deep); }
+.qb-cache { background:var(--peach-light); color:var(--peach-deep); }
+.qb-pic { background:var(--butter-light); color:#7a6010; }
+
+.q-num { font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--text-light); white-space:nowrap; }
+.q-source { font-size:0.7rem; color:var(--text-light); font-style:italic; margin-top:2px; }
+.q-text { font-size:0.9rem; line-height:1.55; margin-bottom:0.9rem; font-weight:500; }
+.q-code { font-family:'Space Mono',monospace; background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:0.9rem; font-size:0.75rem; margin:0.5rem 0 0.9rem; white-space:pre; line-height:1.7; overflow-x:auto; }
+.q-code .c-label { color:#89b4fa; font-weight:700; }
+.q-code .c-val { color:#a6e3a1; }
+.q-code .c-comment { color:#6c7086; font-style:italic; }
+.q-code .c-instr { color:#f38ba8; }
+
+/* Written question (fill-in-blank style rendered as reveal) */
+.written-q { margin-bottom:0.8rem; }
+.written-q .sub-q { font-size:0.88rem; color:var(--text-dark); margin-bottom:0.5rem; line-height:1.5; }
+.written-q .sub-q strong { color:var(--lavender-deep); }
+.reveal-btn {
+  padding:8px 18px; border-radius:10px; border:1.5px solid var(--lavender);
+  background:var(--white); cursor:pointer; font-family:'DM Sans',sans-serif;
+  font-size:0.82rem; font-weight:600; color:var(--lavender-deep); transition:all 0.2s;
+  margin-bottom:0.6rem;
+}
+.reveal-btn:hover { background:var(--lavender-light); }
+.reveal-btn.revealed { background:var(--mint-light); border-color:var(--mint-deep); color:var(--mint-deep); }
+
+.options { display:flex; flex-direction:column; gap:0.5rem; }
+.opt-btn {
+  padding:9px 14px; border-radius:10px; border:1.5px solid var(--lavender-light);
+  background:var(--white); cursor:pointer; text-align:left;
+  font-family:'DM Sans',sans-serif; font-size:0.84rem;
+  transition:all 0.18s; display:flex; align-items:center; gap:0.6rem;
+}
+.opt-btn:hover:not(:disabled) { background:var(--lavender-light); border-color:var(--lavender); }
+.opt-btn.correct { background:var(--mint-light); border-color:var(--mint-deep); color:#2d6b58; }
+.opt-btn.wrong { background:var(--rose-light); border-color:var(--rose-deep); color:#8b3040; }
+.opt-icon { font-size:1rem; min-width:20px; text-align:center; }
+
+.q-explain {
+  margin-top:0.9rem; padding:0.9rem 1rem; border-radius:10px;
+  background:var(--lavender-light); font-size:0.82rem; color:var(--text-mid);
+  line-height:1.65; display:none;
+}
+.q-explain.show { display:block; }
+.q-explain strong { color:var(--lavender-deep); }
+.q-explain .visual { font-family:'Space Mono',monospace; background:var(--white); border-radius:8px; padding:0.7rem; margin-top:0.6rem; font-size:0.72rem; line-height:1.7; white-space:pre; overflow-x:auto; }
+
+.no-questions { text-align:center; padding:3rem; color:var(--text-light); }
+
+@media(max-width:600px){
+  .hero h1 { font-size:1.8rem; }
+  .cards-grid { grid-template-columns:1fr; }
+  nav { padding:0 1rem; }
+  .nav-btn { padding:5px 8px; font-size:0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">COE 302 <span>— Study Hub</span></div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+    <button class="nav-btn" onclick="showPage('guide')">📖 Study Guide</button>
+    <button class="nav-btn" onclick="showPage('practice')">✏️ Practice</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-tag">KFUPM · COE 302 · Introduction to Embedded Systems</div>
+    <h1>Master Embedded<br><em>Systems</em></h1>
+    <p>Visual study guide covering PIC16F instructions, I/O devices, interrupts, memory management & caches. Exact past quiz questions included!</p>
+    <div class="hero-cards">
+      <div class="hero-card rose" onclick="showPage('guide'); scrollToSection('s-io')">
+        <div class="hc-icon">🔌</div>
+        <div class="hc-title">I/O & Polling</div>
+        <div class="hc-sub">Memory-mapped I/O, busy-wait</div>
+      </div>
+      <div class="hero-card sky" onclick="showPage('guide'); scrollToSection('s-intr')">
+        <div class="hc-icon">⚡</div>
+        <div class="hc-title">Interrupt Systems</div>
+        <div class="hc-sub">ISR, priorities, ARM7 response</div>
+      </div>
+      <div class="hero-card lavender" onclick="showPage('guide'); scrollToSection('s-mem')">
+        <div class="hc-icon">🗂️</div>
+        <div class="hc-title">Memory Management</div>
+        <div class="hc-sub">Paging, segmentation, TLB</div>
+      </div>
+      <div class="hero-card peach" onclick="showPage('guide'); scrollToSection('s-cache')">
+        <div class="hc-icon">💾</div>
+        <div class="hc-title">Cache Memory</div>
+        <div class="hc-sub">Hit/miss, AMAT, organizations</div>
+      </div>
+      <div class="hero-card mint" onclick="showPage('guide'); scrollToSection('s-pic')">
+        <div class="hc-icon">🖥️</div>
+        <div class="hc-title">PIC16F Instructions</div>
+        <div class="hc-sub">Architecture, ISA, addressing</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STUDY GUIDE -->
+<div id="page-guide" class="page">
+<div class="guide-layout">
+
+<!-- I/O DEVICES -->
+<div id="s-io">
+<div class="section-header">
+  <span class="section-pill pill-rose">Chapter 3 · Slides 1–17</span>
+  <h2 class="section-title">🔌 I/O Devices & Polling</h2>
+</div>
+<div class="cards-grid">
+  <div class="card rose-card">
+    <h3>🖥️ I/O Device Interface</h3>
+    <p>Every I/O device communicates with the CPU through registers:</p>
+    <div class="visual-box vb-rose">
+      <div class="flow-row"><span class="flow-box fb-rose">Data Reg</span><span class="flow-arrow">←</span><span style="font-size:0.78rem;color:var(--text-mid)">Holds input/output data</span></div>
+      <div class="flow-row"><span class="flow-box fb-mint">Status Reg</span><span class="flow-arrow">←</span><span style="font-size:0.78rem;color:var(--text-mid)">ready, busy, error flags</span></div>
+      <div class="flow-row"><span class="flow-box fb-lavender">Control Reg</span><span class="flow-arrow">←</span><span style="font-size:0.78rem;color:var(--text-mid)">configure & command</span></div>
+    </div>
+  </div>
+
+  <div class="card mint-card">
+    <h3>🗺️ Memory-Mapped I/O</h3>
+    <p>Each device register gets a unique memory address. ARM uses normal <strong>LDR/STR</strong> — no special I/O instructions needed.</p>
+    <div class="diagram">
+<span class="label">C code:</span>
+#define DEV1_DATA   <span class="value">0x1020</span>  <span class="label">← address</span>
+#define DEV1_STATUS <span class="value">0x1022</span>
+value = <span class="highlight">*(int *)</span>DEV1_DATA;   <span class="label">← read</span>
+<span class="highlight">*(int *)</span>DEV1_DATA = val;  <span class="label">← write</span>
+
+<span class="label">ARM:</span>
+LDR r1, =DEV1_DATA   <span class="label">; load address</span>
+LDR r0, [r1]         <span class="label">; read device</span>
+STR r0, [r1]         <span class="label">; write device</span>
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>⏳ Busy-Wait (Polling)</h3>
+    <p>CPU repeatedly checks status until device is ready. Simple but <strong>wastes CPU cycles</strong>.</p>
+    <div class="diagram">
+<span class="label">Output — wait until done:</span>
+*(char*)OUT_STATUS = <span class="value">1</span>;  <span class="label">← trigger write</span>
+<span class="highlight">while</span>(*(char*)OUT_STATUS != <span class="value">0</span>);
+<span class="label">         ↑ spin until device clears flag</span>
+
+<span class="label">Input — wait for data:</span>
+<span class="highlight">while</span>(*(char*)IN_STATUS == <span class="value">0</span>);
+<span class="label">         ↑ wait for data-ready flag</span>
+c = *(char*)IN_DATA;
+    </div>
+  </div>
+
+  <div class="card peach-card wide-card">
+    <h3>📝 Full Polling Loop — Input→Output Copy (Quiz 3 181 style)</h3>
+    <div class="diagram" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+<div><span class="label">Device addresses:</span>
+#define IN_DATA    <span class="value">0x1000</span>
+#define IN_STATUS  <span class="value">0x1001</span>
+#define OUT_DATA   <span class="value">0x1100</span>
+#define OUT_STATUS <span class="value">0x1101</span></div>
+<div><span class="label">Copy loop:</span>
+<span class="highlight">while</span>(*(char*)IN_STATUS == <span class="value">0</span>);
+c = *(char*)IN_DATA;
+*(char*)IN_STATUS = <span class="value">0</span>;  <span class="label">← reset flag</span>
+*(char*)OUT_DATA = c;
+*(char*)OUT_STATUS = <span class="value">1</span>; <span class="label">← trigger tx</span>
+<span class="highlight">while</span>(*(char*)OUT_STATUS != <span class="value">0</span>);</div>
+    </div>
+    <div class="tag-row" style="margin-top:0.8rem">
+      <span class="tag" style="background:var(--rose-light);color:var(--rose-deep)">❌ CPU can't do other work</span>
+      <span class="tag" style="background:var(--mint-light);color:var(--mint-deep)">✅ Simple to implement</span>
+      <span class="tag" style="background:var(--peach-light);color:var(--peach-deep)">⚠️ Poor multi-device scaling</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- INTERRUPTS -->
+<div id="s-intr">
+<div class="section-header">
+  <span class="section-pill pill-sky">Chapter 3 · Slides 11–31</span>
+  <h2 class="section-title">⚡ Interrupt Systems</h2>
+</div>
+<div class="cards-grid">
+
+  <div class="card sky-card">
+    <h3>🔄 Interrupt Mechanism — 5 Steps</h3>
+    <div class="timeline">
+      <div class="tl-step"><div class="tl-title">1. Device asserts interrupt request</div><div class="tl-desc">Hardware signal raised to CPU interrupt line</div></div>
+      <div class="tl-step"><div class="tl-title">2. CPU finishes current instruction & acknowledges</div><div class="tl-desc">Saves PC, CPSR to LR and SPSR</div></div>
+      <div class="tl-step"><div class="tl-title">3. CPU gets interrupt vector → finds handler address</div><div class="tl-desc">Index into interrupt vector table in memory</div></div>
+      <div class="tl-step"><div class="tl-title">4. ISR executes — services the device</div><div class="tl-desc">Read data, reset status flags</div></div>
+      <div class="tl-step"><div class="tl-title">5. Restore state, return to foreground</div><div class="tl-desc">SUBS PC, LR, #4 restores CPSR from SPSR</div></div>
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>🔧 ARM7 Interrupt Response (Quiz 3 191)</h3>
+    <p style="margin-bottom:0.5rem">When ARM7 gets an IRQ, hardware automatically:</p>
+    <div class="visual-box vb-lavender">
+      <div class="flow-row"><span class="flow-box fb-lavender">① LR ← PC + 4</span></div>
+      <div class="flow-row"><span class="flow-arrow">↓</span></div>
+      <div class="flow-row"><span class="flow-box fb-rose">② SPSR ← CPSR</span></div>
+      <div class="flow-row"><span class="flow-arrow">↓</span></div>
+      <div class="flow-row"><span class="flow-box fb-mint">③ CPSR mode ← IRQ</span></div>
+      <div class="flow-row"><span class="flow-arrow">↓</span></div>
+      <div class="flow-row"><span class="flow-box fb-peach">④ CPSR[I] ← 1 (disable IRQ)</span></div>
+      <div class="flow-row"><span class="flow-arrow">↓</span></div>
+      <div class="flow-row"><span class="flow-box fb-sky">⑤ PC ← 0x18 (IRQ vector)</span></div>
+    </div>
+    <p style="margin-top:0.6rem;font-size:0.8rem">Return: <code style="font-family:'Space Mono',monospace">SUBS PC, LR, #4</code></p>
+  </div>
+
+  <div class="card rose-card">
+    <h3>🎯 Polling vs Interrupts</h3>
+    <table class="table-visual">
+      <tr><th></th><th>Polling</th><th>Interrupts</th></tr>
+      <tr><td>CPU overhead</td><td>Always spinning</td><td>Only when needed</td></tr>
+      <tr><td>Response time</td><td>Depends on poll rate</td><td>Immediate</td></tr>
+      <tr><td>Complexity</td><td>Simple</td><td>More complex</td></tr>
+      <tr><td>Multi-device</td><td>Poor scaling</td><td>Good scaling</td></tr>
+    </table>
+  </div>
+
+  <div class="card mint-card">
+    <h3>🏆 Interrupt Priorities & Masking</h3>
+    <div class="visual-box vb-mint">
+      <div style="font-size:0.8rem;font-weight:600;color:var(--mint-deep);margin-bottom:0.3rem">Priority Order (highest → lowest):</div>
+      <div class="flow-row"><span class="flow-box" style="background:#ff8fa3;color:#6b0020">NMI (non-maskable!)</span><span class="flow-arrow">→</span><span style="font-size:0.75rem">Power fail, hardware fault</span></div>
+      <div class="flow-row" style="margin-top:0.3rem"><span class="flow-box fb-rose">FIQ</span><span class="flow-arrow">→</span><span class="flow-box fb-lavender">IRQ high</span><span class="flow-arrow">→</span><span class="flow-box fb-mint">IRQ low</span></div>
+    </div>
+    <p style="margin-top:0.6rem;font-size:0.8rem"><strong>Non-vectored shared line:</strong> ISR must poll each device's status register to identify who interrupted.</p>
+  </div>
+
+  <div class="card sky-card wide-card">
+    <h3>📐 Interrupt Timing Calculation (From Quiz 3 — 181 & 191)</h3>
+    <div class="diagram" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+<div><span class="label">Quiz 3 – 191 scenario:</span>
+Handler C (20 cy, lowest) running.
+At end of cycle 5: A (30 cy) + B (40 cy) both interrupt.
+A has highest priority.
+
+<span class="label">Timeline:</span>
+Cycles  1–5 :  C running (5 done, 15 remain)
+Cycles  6–35:  <span class="highlight">A preempts</span> C, runs (30 cy)
+Cycles 36–75:  <span class="highlight">B runs</span> (40 cy)
+Cycles 76–90:  <span class="highlight">C resumes</span> (15 remaining)
+→ C finishes at cycle <span class="value">90</span></div>
+<div><span class="label">Quiz 3 – 181 scenario:</span>
+Handler B (25 cy) running.
+At end of cycle 5: A (30 cy, higher) interrupts.
+
+<span class="label">Timeline:</span>
+Cycles  1–5 : B running (5 done, 20 remain)
+Cycles  6–35: <span class="highlight">A preempts</span> B, runs (30 cy)
+Cycles 36–55: <span class="highlight">B resumes</span> (20 remaining)
+→ B finishes at cycle <span class="value">55</span>
+
+<span class="label">General formula:</span>
+finish = start_of_resume + remaining_cycles - 1</div>
+    </div>
+  </div>
+
+  <div class="card peach-card">
+    <h3>📋 Interrupt Vector Table</h3>
+    <div class="diagram">
+<span class="label">ARM Vector Table (default at 0x00000000):</span>
+0x00000000 → Reset handler
+0x00000004 → Undefined instruction
+0x00000008 → SWI (software interrupt / trap)
+0x0000000C → Prefetch abort
+0x00000010 → Data abort
+0x00000018 → IRQ handler  <span class="label">← device interrupts</span>
+0x0000001C → FIQ handler
+
+<span class="label">How vectoring works:</span>
+Device sends vector# → CPU indexes table → jumps to ISR
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>🧩 Exceptions vs Interrupts vs Traps</h3>
+    <table class="table-visual">
+      <tr><th>Type</th><th>Trigger</th><th>Example</th></tr>
+      <tr><td>Interrupt</td><td>External hardware signal</td><td>I/O device ready</td></tr>
+      <tr><td>Exception</td><td>CPU hardware condition</td><td>Divide by zero</td></tr>
+      <tr><td>Trap (SWI)</td><td>Software instruction</td><td>System call → supervisor mode</td></tr>
+    </table>
+  </div>
+
+  <div class="card rose-card">
+    <h3>💻 ISR with Producer-Consumer Buffer</h3>
+    <p style="margin-bottom:0.5rem">When input and output rates differ, a circular buffer decouples them:</p>
+    <div class="diagram">
+Input ISR (producer): <span class="highlight">enqueue</span> → advances tail
+Output ISR (consumer): <span class="highlight">dequeue</span> → advances head
+
+<span class="label">Buffer:</span> [a][b][c][d][_][_]
+                ↑head         ↑tail
+
+If buffer full → input ISR drops data (or sets error)
+If buffer empty → output ISR does nothing
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- MEMORY MANAGEMENT -->
+<div id="s-mem">
+<div class="section-header">
+  <span class="section-pill pill-lavender">Chapter 3 · Slides 39–53</span>
+  <h2 class="section-title">🗂️ Memory Management</h2>
+</div>
+<div class="cards-grid">
+
+  <div class="card lavender-card">
+    <h3>🌐 Virtual Memory</h3>
+    <p>Each process sees its own private address space. MMU translates virtual → physical transparently.</p>
+    <div class="visual-box vb-lavender" style="margin-top:0.6rem">
+      <div class="flow-row"><span class="flow-box fb-lavender">CPU</span><span class="flow-arrow">→</span><span class="flow-box fb-rose">Virtual Addr</span><span class="flow-arrow">→</span><span class="flow-box fb-mint">MMU</span><span class="flow-arrow">→</span><span class="flow-box fb-sky">Physical Addr</span><span class="flow-arrow">→</span><span class="flow-box fb-peach">RAM</span></div>
+    </div>
+    <ul style="margin-top:0.6rem">
+      <li>Processes isolated from each other</li>
+      <li>Address space can exceed physical RAM</li>
+      <li>OS swaps pages to disk (demand paging)</li>
+    </ul>
+  </div>
+
+  <div class="card mint-card">
+    <h3>📦 Paging — Address Translation</h3>
+    <div class="diagram">
+Virtual Address = [<span class="highlight">Page #</span>][<span class="value">Offset</span>]
+
+Page # → Page Table → Frame #
+Physical = [<span class="highlight">Frame #</span>][<span class="value">Offset</span>]
+
+<span class="label">Quiz 3-181 Example (1KB pages, 32-bit addr):</span>
+1KB = 2¹⁰ → offset = 10 bits
+Page# bits = 32 − 10 = 22 bits
+
+<span class="label">Quiz 3-181: addr = 0x00020FB8, 1KB pages:</span>
+Page# = 0x00020FB8 >> 10 = 0x00083
+Offset = 0x00020FB8 & 0x3FF = 0x3B8
+Physical (frame 0x20) = 0x20 × 1024 + 0x3B8 = <span class="value">0x000083B8</span>
+    </div>
+  </div>
+
+  <div class="card rose-card">
+    <h3>📐 Paging Math — Quick Reference</h3>
+    <div class="formula-box">
+      <div class="formula">offset bits = log₂(page size)</div>
+      <div class="formula-desc">e.g., 1KB = 2¹⁰ → 10 offset bits</div>
+    </div>
+    <div class="formula-box" style="margin-top:0.6rem">
+      <div class="formula">page # bits = address bits − offset bits</div>
+      <div class="formula-desc">e.g., 32 − 10 = 22 bits → 2²² = 4M pages</div>
+    </div>
+    <div class="formula-box" style="margin-top:0.6rem">
+      <div class="formula">flat table size = 2^(page# bits) × PTE_size</div>
+      <div class="formula-desc">Quiz 3-181: 2²² × 4B... but frame# only needs 20 bits (30−10)</div>
+    </div>
+  </div>
+
+  <div class="card sky-card wide-card">
+    <h3>🌳 Two-Level Page Tables (Quiz 3-181)</h3>
+    <div class="diagram" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+<div><span class="label">Quiz 3-181: 32-bit addr, 1KB pages, L1 has 2048 entries</span>
+
+Number of entries in each L2 table = 2048
+(same as L1 since same structure)
+
+8MB program:
+  8MB / 1KB = 8192 pages needed
+  8192 / 2048 entries per L2 = 4 L2 tables
+
+Total page tables = 1 (L1) + 4 (L2) = <span class="value">5 page tables</span></div>
+<div><span class="label">Translation flow:</span>
+1. L1 table[L1_index] → L2 table base addr
+2. L2 table[L2_index] → frame number
+3. Physical = frame# × page_size + offset
+
+<span class="label">Why multi-level?</span>
+Flat table: 2²² × 4B = 16MB per process!
+Multi-level: only allocate L2 tables for
+              regions actually used → saves memory</div>
+    </div>
+  </div>
+
+  <div class="card peach-card">
+    <h3>🔲 Segmentation</h3>
+    <div class="diagram">
+Virtual = [<span class="highlight">Segment Selector</span>][<span class="value">Offset</span>]
+
+Segment Table has: Base Address, Limit (size)
+Physical = <span class="highlight">Base</span> + <span class="value">Offset</span>
+  (if Offset ≥ Limit → protection fault!)
+
+<span class="label">From Quiz 3-191 solution:</span>
+Base = <span class="highlight">0x10</span>, Offset = <span class="value">0xFF</span>
+Physical = 0x10 + 0xFF = <span class="value">0x10F</span>
+    </div>
+    <div class="tag-row" style="margin-top:0.5rem">
+      <span class="tag" style="background:var(--mint-light);color:var(--mint-deep)">✅ Variable-size regions</span>
+      <span class="tag" style="background:var(--rose-light);color:var(--rose-deep)">❌ External fragmentation</span>
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>📚 Key Memory Terms</h3>
+    <div class="accordion"><div class="accordion-head" onclick="toggleAcc(this)">Page Fault <span class="acc-icon">▼</span></div><div class="accordion-body">CPU accesses a page not in physical memory (present bit = 0). OS loads the page from disk/swap into a free frame, updates the page table, then retries the instruction.</div></div>
+    <div class="accordion"><div class="accordion-head" onclick="toggleAcc(this)">TLB (Translation Lookaside Buffer) <span class="acc-icon">▼</span></div><div class="accordion-body">Hardware cache for recent page table entries. TLB hit → instant translation. TLB miss → walk page table in RAM and load new entry into TLB. Critical for performance.</div></div>
+    <div class="accordion"><div class="accordion-head" onclick="toggleAcc(this)">ARM MMU Memory Regions <span class="acc-icon">▼</span></div><div class="accordion-body">ARM supports: Sections (1 MB, mapped directly via L1 entry), Large pages (64 KB), Small pages (4 KB). L1 entries can map a 1MB section directly, or point to an L2 table for finer pages.</div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- CACHE -->
+<div id="s-cache">
+<div class="section-header">
+  <span class="section-pill pill-peach">Chapter 3 · Slides 33–39</span>
+  <h2 class="section-title">💾 Cache Memory</h2>
+</div>
+<div class="cards-grid">
+
+  <div class="card peach-card">
+    <h3>🗄️ How Cache Works</h3>
+    <p>Small, fast memory storing copies of recent memory blocks. Exploits locality.</p>
+    <div class="visual-box vb-peach" style="margin-top:0.6rem">
+      <div class="flow-row"><span class="flow-box fb-rose">CPU request</span><span class="flow-arrow">→</span><span class="flow-box fb-lavender">Cache?</span><span class="flow-arrow">→</span><span class="flow-box" style="background:var(--mint);color:#2d6b58">HIT ✓ → fast</span></div>
+      <div class="flow-row" style="margin-top:0.3rem"><span style="width:138px"></span><span class="flow-arrow">→</span><span class="flow-box" style="background:var(--rose);color:#8b3040">MISS ✗ → fetch from RAM (slow)</span></div>
+    </div>
+    <p style="margin-top:0.6rem;font-size:0.8rem"><strong>Temporal locality:</strong> reuse same data soon<br><strong>Spatial locality:</strong> use nearby data soon</p>
+  </div>
+
+  <div class="card mint-card">
+    <h3>📊 Average Memory Access Time (AMAT)</h3>
+    <div class="formula-box">
+      <div class="formula">t_avg = t_cache + (1−h) × t_main</div>
+      <div class="formula-desc">h = hit rate. Example: h=0.9, t_c=5ns, t_m=100ns → 5 + 10 = 15ns</div>
+    </div>
+    <div class="formula-box" style="margin-top:0.6rem">
+      <div class="formula">t_avg = t_L1 + (1−h1)×t_L2 + (1−h1)(1−h2)×t_main</div>
+      <div class="formula-desc">Two-level cache formula (from Quiz 3-181 fill-in-blank)</div>
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>❌ Types of Cache Misses (3 Cs)</h3>
+    <div class="visual-box vb-lavender">
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.4rem 0">
+        <span class="flow-box fb-rose" style="min-width:90px;text-align:center">Compulsory</span>
+        <span style="font-size:0.78rem;color:var(--text-mid)">First-ever access to a block — unavoidable "cold miss"</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.4rem 0">
+        <span class="flow-box fb-peach" style="min-width:90px;text-align:center">Capacity</span>
+        <span style="font-size:0.78rem;color:var(--text-mid)">Working set exceeds cache size</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.4rem 0">
+        <span class="flow-box fb-lavender" style="min-width:90px;text-align:center">Conflict</span>
+        <span style="font-size:0.78rem;color:var(--text-mid)">Multiple blocks map to same cache set</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card sky-card">
+    <h3>🏗️ Cache Organizations</h3>
+    <table class="table-visual">
+      <tr><th>Type</th><th>Placement</th><th>Conflicts</th></tr>
+      <tr><td>Fully Associative</td><td>Anywhere</td><td>None</td></tr>
+      <tr><td>Direct Mapped</td><td>Exactly 1 slot</td><td>High</td></tr>
+      <tr><td>N-way Set Assoc.</td><td>1 of N ways in set</td><td>Medium</td></tr>
+    </table>
+    <p style="margin-top:0.6rem;font-size:0.8rem">
+      <strong>Write-through:</strong> update RAM on every write (simpler)<br>
+      <strong>Write-back:</strong> update RAM only when dirty line evicted (efficient)
+    </p>
+  </div>
+
+</div>
+</div>
+
+<!-- PIC16F -->
+<div id="s-pic">
+<div class="section-header">
+  <span class="section-pill pill-mint">Chapter 2 · Slides 73–95</span>
+  <h2 class="section-title">🖥️ PIC16F Architecture & Instructions</h2>
+</div>
+<div class="cards-grid">
+
+  <div class="card mint-card">
+    <h3>🏛️ PIC16F Architecture Overview</h3>
+    <p>Harvard architecture: separate program and data memories. 8-bit data, 14-bit instructions.</p>
+    <div class="visual-box vb-mint">
+      <div class="flow-row"><span class="flow-box fb-mint">13-bit PC</span><span class="flow-arrow">→</span><span style="font-size:0.78rem">8192 instructions (4 pages × 2K)</span></div>
+      <div class="flow-row"><span class="flow-box fb-rose">W register</span><span class="flow-arrow">→</span><span style="font-size:0.78rem">Working register (like ARM's r0)</span></div>
+      <div class="flow-row"><span class="flow-box fb-lavender">8-level Stack</span><span class="flow-arrow">→</span><span style="font-size:0.78rem">CALL/RETURN addresses only</span></div>
+      <div class="flow-row"><span class="flow-box fb-peach">Register File</span><span class="flow-arrow">→</span><span style="font-size:0.78rem">All data memory is register file</span></div>
+    </div>
+    <div class="tag-row" style="margin-top:0.5rem">
+      <span class="tag" style="background:var(--mint-light);color:var(--mint-deep)">14-bit instruction word</span>
+      <span class="tag" style="background:var(--lavender-light);color:var(--lavender-deep)">8-bit data</span>
+      <span class="tag" style="background:var(--rose-light);color:var(--rose-deep)">Harvard architecture</span>
+    </div>
+  </div>
+
+  <div class="card lavender-card">
+    <h3>📊 Status Register Bits</h3>
+    <div class="diagram">
+<span class="label">Bit 7  IRP:</span>  Register bank select (indirect)
+           0 = Bank 0,1 | 1 = Bank 2,3
+<span class="label">Bit 6-5 RP1:RP0:</span> Bank select (direct)
+           00=B0, 01=B1, 10=B2, 11=B3
+<span class="label">Bit 4  TO:</span>  Watchdog timer timeout flag
+<span class="label">Bit 3  PD:</span>  Power-down (SLEEP executed)
+<span class="label">Bit 2  Z:</span>   Zero flag (result = 0)
+<span class="label">Bit 1  DC:</span>  Digit carry (bit 3 carry)
+<span class="label">Bit 0  C:</span>   Carry / borrow bit
+    </div>
+  </div>
+
+  <div class="card rose-card wide-card">
+    <h3>📋 PIC16F Instruction Set — Key Instructions</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem">
+      <div>
+        <p style="font-weight:600;font-size:0.82rem;margin-bottom:0.4rem;color:var(--rose-deep)">Byte-Oriented (f=reg, d=dest)</p>
+        <div class="diagram" style="margin:0;font-size:0.7rem">
+<span class="label">MOVWF  f</span>  W → f
+<span class="label">MOVF   f,d</span> f → d (Z flag)
+<span class="label">CLRF   f</span>  f = 0 (Z=1)
+<span class="label">ADDWF  f,d</span> W + f → d
+<span class="label">SUBWF  f,d</span> f - W → d
+<span class="label">ANDWF  f,d</span> W AND f → d
+<span class="label">IORWF  f,d</span> W OR f → d
+<span class="label">XORWF  f,d</span> W XOR f → d
+<span class="label">RRF    f,d</span> rotate right through C
+<span class="label">RLF    f,d</span> rotate left through C
+<span class="label">INCFSZ f,d</span> f+1→d; skip if 0
+<span class="label">DECFSZ f,d</span> f-1→d; skip if 0
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:600;font-size:0.82rem;margin-bottom:0.4rem;color:var(--mint-deep)">Literal Operations</p>
+        <div class="diagram" style="margin:0;font-size:0.7rem">
+<span class="label">MOVLW  k</span>  k → W
+<span class="label">ADDLW  k</span>  W + k → W
+<span class="label">SUBLW  k</span>  k - W → W
+<span class="label">ANDLW  k</span>  W AND k → W
+<span class="label">IORLW  k</span>  W OR k → W
+<span class="label">XORLW  k</span>  W XOR k → W
+        </div>
+        <p style="font-weight:600;font-size:0.82rem;margin:0.6rem 0 0.4rem;color:var(--sky-deep)">Bit Operations</p>
+        <div class="diagram" style="margin:0;font-size:0.7rem">
+<span class="label">BSF  f,b</span>  set bit b of f
+<span class="label">BCF  f,b</span>  clear bit b of f
+<span class="label">BTFSC f,b</span> skip if bit b = 0
+<span class="label">BTFSS f,b</span> skip if bit b = 1
+        </div>
+      </div>
+      <div>
+        <p style="font-weight:600;font-size:0.82rem;margin-bottom:0.4rem;color:var(--lavender-deep)">Control Flow</p>
+        <div class="diagram" style="margin:0;font-size:0.7rem">
+<span class="label">GOTO   k</span>  PC ← k (11-bit addr)
+<span class="label">CALL   k</span>  push PC; PC ← k
+<span class="label">RETURN  </span>  PC ← top of stack
+<span class="label">RETLW  k</span>  W ← k; return
+<span class="label">RETFIE  </span>  return from ISR
+<span class="label">SLEEP   </span>  standby mode
+<span class="label">NOP     </span>  no operation
+
+<span class="label">d=0 → result to W</span>
+<span class="label">d=1 (f) → result to f</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card peach-card">
+    <h3>📌 Addressing Modes</h3>
+    <div class="diagram">
+<span class="label">Immediate (Literal):</span>
+  MOVLW <span class="value">0x55</span>    ; W ← 0x55
+
+<span class="label">Direct (register address in instruction):</span>
+  ADDWF <span class="value">0x25</span>, f  ; f[0x25] ← W + f[0x25]
+
+<span class="label">Indirect (via FSR + IRP):</span>
+  MOVWF INDF       ; [FSR] ← W  (IRP:FSR = 9-bit addr)
+  8 bits from FSR + 1 bit IRP → 9-bit addr → 512 locations
+
+<span class="label">PC Absolute:</span>
+  GOTO <span class="value">0x200</span>    ; 11 bits in instr + 2 from PCLATH
+
+<span class="label">PC Relative (Computed GOTO):</span>
+  ADDWF PCL, f     ; jump to computed address
+    </div>
+  </div>
+
+  <div class="card sky-card wide-card">
+    <h3>🔍 PIC16F Code Trace — Exam Practice</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+      <div>
+        <p style="font-size:0.82rem;font-weight:600;margin-bottom:0.5rem;color:var(--sky-deep)">Quiz 2-171: Trace register 0x27</p>
+        <div class="diagram" style="margin:0">
+<span class="label">Code:</span>
+MOVLW <span class="value">0xA7</span>   ; W ← 0xA7
+MOVWF <span class="value">0x25</span>   ; [0x25] ← 0xA7
+MOVLW <span class="value">4</span>      ; W ← 4 (loop counter)
+MOVWF <span class="value">0x26</span>   ; [0x26] ← 4
+CLRF  <span class="value">0x27</span>   ; [0x27] ← 0
+NEXT:
+MOVF  <span class="value">0x25</span>, w ; W ← [0x25]
+ANDLW <span class="value">3</span>      ; W ← W AND 3 (low 2 bits)
+ADDWF <span class="value">0x27</span>, f ; [0x27] += W
+RRF   <span class="value">0x25</span>, f ; [0x25] >>= 1 (through C)
+RRF   <span class="value">0x25</span>, f ; [0x25] >>= 1 (again)
+DECFSZ <span class="value">0x26</span>   ; [0x26]--; skip if 0
+GOTO  NEXT
+
+<span class="label">Effect per iteration:</span>
+Takes low 2 bits of 0x25 → add to 0x27
+Then shifts 0x25 right by 2 positions
+Repeats 4 times (0x26 counts down)
+
+0xA7 = 1010 0111
+Iter1: bits[1:0]=11 → 0x27 += 3 → 0x27=3
+       0x25 >>2 → 0x29 (1010 0111 >> 2 = 0010 1001? no...)
+       <span class="highlight">Answer: trace step by step with carry!</span>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.82rem;font-weight:600;margin-bottom:0.5rem;color:var(--sky-deep)">Quiz 2-191 Q15: Trace register 0x27</p>
+        <div class="diagram" style="margin:0">
+<span class="label">Code:</span>
+MOVLW <span class="value">0xB6</span>   ; W ← 0xB6
+MOVWF <span class="value">0x25</span>   ; [0x25] ← 0xB6
+MOVLW <span class="value">8</span>      ; loop counter = 8
+MOVWF <span class="value">0x26</span>   ; [0x26] ← 8
+CLRF  <span class="value">0x27</span>   ; [0x27] ← 0
+NEXT:
+BTFSC <span class="value">0x25</span>, 0 ; skip if bit 0 = 0
+INCF  <span class="value">0x27</span>, f ; [0x27]++
+RRF   <span class="value">0x25</span>, f  ; [0x25] >>= 1
+DECFSZ <span class="value">0x26</span>   ; --counter; skip if 0
+GOTO  NEXT
+
+<span class="label">Effect: counts set bits in 0xB6!</span>
+0xB6 = 1011 0110
+Bits that are 1: positions 7,5,4,2,1 = 5 bits
+→ [0x27] = <span class="value">5</span>
+
+<span class="label">Pattern: BTFSC + RRF = count 1-bits</span>
+Each iteration: if LSB=1 → increment counter
+Then shift right → check next bit
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card butter-card">
+    <h3>💡 PIC Memory Organization</h3>
+    <div class="diagram">
+<span class="label">Program Memory:</span>
+4 pages × 2K instructions = 8K total
+Interrupt vector at <span class="value">0x004</span>
+Stack: separate 8-level (for CALL/RETURN only)
+
+<span class="label">Data Memory (Register File):</span>
+4 banks × 128 bytes = 512 bytes total
+<span class="highlight">Bank 0:</span> 0x00–0x7F (SFRs at 0x00–0x1F, GPRs at 0x20–0x7F)
+<span class="highlight">Bank 1:</span> 0x80–0xFF (SFRs + GPRs)
+
+<span class="label">Special Function Registers (SFRs):</span>
+INDF (0x00): indirect addressing target
+PCL  (0x02): lower byte of PC
+STATUS (0x03): Z, C, DC, bank select bits
+FSR  (0x04): file select register (indirect addr)
+PCLATH(0x0A): PC latch (upper bits for GOTO/CALL)
+    </div>
+  </div>
+
+</div>
+</div>
+
+</div><!-- guide-layout -->
+</div><!-- page-guide -->
+
+<!-- PRACTICE PAGE -->
+<div id="page-practice" class="page">
+<div class="practice-layout">
+  <div class="practice-header">
+    <h2>✏️ Practice Questions</h2>
+    <p>Exact questions from past quizzes (Quiz 2 — 171, 191 · Quiz 3 — 181, 191) plus conceptual MCQs. Written questions are shown as-is with full solutions.</p>
+  </div>
+
+  <div class="quiz-controls">
+    <button class="quiz-filter-btn qfb-all active" onclick="filterQuiz('all',this)">All Questions</button>
+    <button class="quiz-filter-btn qfb-io" onclick="filterQuiz('io',this)">I/O & Polling</button>
+    <button class="quiz-filter-btn qfb-intr" onclick="filterQuiz('intr',this)">Interrupts</button>
+    <button class="quiz-filter-btn qfb-mem" onclick="filterQuiz('mem',this)">Memory Mgmt</button>
+    <button class="quiz-filter-btn qfb-cache" onclick="filterQuiz('cache',this)">Cache</button>
+    <button class="quiz-filter-btn qfb-pic" onclick="filterQuiz('pic',this)">PIC16F</button>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-text">Score</div>
+    <div class="score-prog"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+    <div class="score-nums" id="score-display">0 / 0</div>
+  </div>
+
+  <div id="quiz-container"></div>
+</div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn')[['home','guide','practice'].indexOf(id)].classList.add('active');
+  window.scrollTo(0,0);
+}
+function scrollToSection(id) {
+  setTimeout(() => { const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 100);
+}
+function toggleAcc(head) {
+  head.classList.toggle('open');
+  head.nextElementSibling.classList.toggle('open');
+}
+
+// ===== QUESTIONS =====
+// Types: mcq (options + answer), written (text + solution revealed on button click)
+const questions = [
+
+// ===== I/O =====
+{
+  topic:'io', badge:'qb-io', label:'I/O & Polling', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q1)',
+  text:'A memory-mapped I/O means ___. Complete the definition.',
+  options:[
+    'A special I/O address space is used with IN/OUT instructions',
+    'An address is assigned to each I/O device register, and memory read/write instructions are used to communicate with I/O devices',
+    'I/O devices share the same registers as the CPU',
+    'The OS handles all I/O via system calls'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "A memory-mapped I/O means an address is assigned to each I/O and memory read/write instructions are used to communicate with I/O devices." This is different from isolated I/O (e.g., x86 IN/OUT instructions).',
+  visual:'Device register → memory address\nCPU: LDR r0, [r1]   ; r1 = device address\n     STR r0, [r1]   ; write to device'
+},
+{
+  topic:'io', badge:'qb-io', label:'I/O & Polling', type:'mcq',
+  source:'Conceptual',
+  text:'Which of the following is the main disadvantage of busy-wait (polling) I/O?',
+  options:[
+    'It requires special hardware interrupt lines',
+    'CPU wastes cycles checking the device even when it is not ready',
+    'It cannot handle output devices',
+    'It is too complex to implement'
+  ],
+  answer:1,
+  explain:'Polling continuously spins in a loop checking the status register, preventing the CPU from doing any other useful work. This wastes cycles and is especially bad when devices are slow (like keyboards). Interrupts solve this by letting the device signal the CPU only when ready.'
+},
+
+// ===== INTERRUPTS =====
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q2)',
+  text:'In an interrupt-based I/O system, a device knows that its interrupt request is accepted by:',
+  options:[
+    'Seeing its data appear on the data bus',
+    'Seeing its priority number on the interrupt acknowledge lines',
+    'Receiving a reset signal from the CPU',
+    'Checking the status of the IRQ pin'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "a device knows that its request is accepted by seeing its priority number on the interrupt acknowledge lines." This is how vectored interrupt controllers (like PIC controllers in hardware) work — they provide the vector number during the interrupt acknowledge cycle.'
+},
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'written',
+  source:'Quiz 3 – 181 (Q1.3) — Exact exam question',
+  text:'Given that two devices A and B are connected to a CPU through two interrupt lines with device A having higher priority than B. Suppose that the interrupt handler of device A executes in 30 cycles while that of B executes in 25 cycles. Assume that each instruction in the handlers executes in one clock cycle. If device A initiates an interrupt at the end of cycle 5 when the handler of device B is executing, then the handler of device B will finish execution by the end of cycle ___.',
+  solution:`Answer: cycle 55
+
+Step-by-step:
+• At end of cycle 5: B has run 5 cycles → 20 cycles remaining
+• A interrupts and has higher priority → A preempts B immediately
+• A runs for 30 cycles: cycles 6 → 35
+• B resumes at cycle 36 with 20 cycles remaining
+• B finishes at: 36 + 20 - 1 = cycle 55
+
+Timeline:
+  B [1-5] → A [6-35] → B resumes [36-55]
+                               ↑ 20 remaining`
+},
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q4)',
+  text:'If more than one device has the same priority and is connected to the same interrupt pin, how does the interrupt handler identify which device initiated the interrupt?',
+  options:[
+    'The interrupt controller automatically identifies the device',
+    'The device sends its ID on the data bus',
+    'The interrupt handler checks the status register of each device',
+    'The CPU reads a dedicated interrupt ID register'
+  ],
+  answer:2,
+  explain:'From Quiz 3-181 solution: "the interrupt handler will know the device who initiated the interrupt by checking the status register of each device." This is software polling within the ISR — checking each device\'s data-ready or interrupt-request bit in their respective status registers.'
+},
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q5)',
+  text:'Interrupt vectors allow an interrupting device to specify its handler. How does this work?',
+  options:[
+    'The device writes its handler address directly to the PC register',
+    'The device sends an interrupt vector which indexes into an interrupt vector table that stores the handler address',
+    'The OS scans memory for the handler matching the device type',
+    'The CPU uses the interrupt line number as the handler address'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "Interrupt vectors allow an interrupting device to specify its handler by sending an interrupt vector which is used as an index to an interrupt vector table which stores the address of the handler." The ARM vector table starts at 0x00000000 (or 0xFFFF0000 for high vectors).'
+},
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'written',
+  source:'Quiz 3 – 191 — Exact exam question',
+  text:'Three devices A, B, and C are connected to a CPU. Device A has the highest priority (handler: 30 cycles), B has medium priority (handler: 40 cycles), and C has the lowest priority (handler: 20 cycles). At the end of cycle 5, while handler C is executing, devices A and B both initiate interrupts. By what cycle does handler C finish execution?',
+  solution:`Answer: cycle 90
+
+Step-by-step:
+• At cycle 5: C has run 5 cycles → 15 cycles remaining
+• A and B both interrupt. A has highest priority → A runs first
+
+Timeline:
+  C [1–5] → A [6–35] → B [36–75] → C resumes [76–90]
+
+• A runs: cycles 6 to 35 (30 cycles)
+• B runs: cycles 36 to 75 (40 cycles)  
+• C resumes at cycle 76, needs 15 more cycles
+• C finishes: 76 + 15 − 1 = cycle 90
+
+Formula: finish_C = 5 (done) + 30 (A) + 40 (B) + 15 (remaining) = 90`
+},
+{
+  topic:'intr', badge:'qb-intr', label:'Interrupts', type:'mcq',
+  source:'Quiz 3 – 191 (fill-in-blank)',
+  text:'What is the correct sequence of actions ARM7 performs when responding to an IRQ?',
+  options:[
+    'Set PC to vector → Copy CPSR to SPSR → Save PC → Disable interrupts',
+    'LR ← PC+4 → SPSR ← CPSR → Set CPSR (IRQ mode) → CPSR[I]←1 (disable IRQ) → PC ← IRQ vector',
+    'Save all registers → Disable interrupts → Jump to ISR',
+    'Copy SPSR to CPSR → Save PC → Set interrupt vector → Enable FIQ'
+  ],
+  answer:1,
+  explain:'ARM7 IRQ response (from quiz3-191 solution):\n① LR ← PC + 4 (save return address)\n② SPSR ← CPSR (save processor state)\n③ CPSR mode bits ← IRQ mode\n④ CPSR[I] ← 1 (disable further IRQ)\n⑤ PC ← 0x00000018 (IRQ vector address)\nReturn: SUBS PC, LR, #4 (restores CPSR from SPSR)',
+  visual:'LR ← PC+4\nSPSR ← CPSR\nCPSR[mode] ← IRQ\nCPSR[I] ← 1\nPC ← 0x18'
+},
+
+// ===== MEMORY MANAGEMENT =====
+{
+  topic:'mem', badge:'qb-mem', label:'Memory Mgmt', type:'written',
+  source:'Quiz 3 – 181 (Q2) — Exact exam question',
+  text:`Q2. Given a virtual memory system with 32-bit logical addresses and 1K Byte pages. The system supports up to 1 GB of physical memory.
+
+(i) How many bits for the page number and how many bits for the offset?
+(ii) How many entries are there in the full flat page table?
+(iii) How wide is each entry for storing the physical page number?
+(iv) Given logical address 0x00020FB8 — what is the page number (hex) and offset (hex)?
+(v) Page 0x00020FB8 is mapped to physical frame 0x20 — what is the physical address?
+(vi) With two-level page tables, L1 has 2048 entries. How many entries in each L2 table? How many page tables for an 8MB program?`,
+  solution:`(i) 1KB = 2¹⁰ → offset = 10 bits
+    Page# bits = 32 − 10 = 22 bits
+
+(ii) Full flat table entries = 2²² = 4M entries
+
+(iii) Physical memory = 1GB = 2³⁰
+    Physical frame# bits = 30 − 10 = 20 bits per entry
+
+(iv) addr = 0x00020FB8
+    Page# = 0x00020FB8 >> 10 = 0x00020FB8 / 1024 = 0x00083
+    Offset = 0x00020FB8 & 0x3FF = 0x3B8
+
+(v) Physical = frame 0x20 × 1024 + offset 0x3B8
+           = 0x8000 + 0x3B8 = 0x000083B8
+
+(vi) L1 has 2048 entries → each L2 table also has 2048 entries
+    8MB program = 8×1024×1024 / 1024 = 8192 pages
+    L2 tables needed = ceil(8192 / 2048) = 4
+    Total page tables = 1 (L1) + 4 (L2) = 5 page tables`
+},
+{
+  topic:'mem', badge:'qb-mem', label:'Memory Mgmt', type:'mcq',
+  source:'Quiz 3 – 191 (fill-in-blank)',
+  text:'Using memory segmentation, if the base segment address is 0x10 and the offset is 0xFF, what is the physical address?',
+  options:['0xEF','0xFF','0x10F','0x10FF'],
+  answer:2,
+  explain:'Segmentation formula: Physical = Base + Offset = 0x10 + 0xFF = 0x10F\n\n0x10 = 16 decimal\n0xFF = 255 decimal\n16 + 255 = 271 = 0x10F\n\nThis is directly from the Quiz 3-191 solution.',
+  visual:'Physical = Base + Offset\n         = 0x10 + 0xFF\n         = 0x10F'
+},
+{
+  topic:'mem', badge:'qb-mem', label:'Memory Mgmt', type:'mcq',
+  source:'Quiz 3 – 191 (fill-in-blank)',
+  text:'A virtual memory system has 32-bit addresses and 512-byte pages. Two-level page tables with L1 having 2048 entries. How many page tables are allocated for a 2MB program?',
+  options:['1','2','3','4'],
+  answer:1,
+  explain:'512B pages → 2MB / 512 = 4096 pages needed.\nL1 has 2048 entries → each L2 table covers 2048 pages.\n4096 / 2048 = 2 second-level (L2) tables.\n\nQuiz 3-191 answer = 2 (counting only the second-level tables).',
+  visual:'2MB / 512B = 4096 pages\n4096 / 2048 entries per L2 = 2 L2 tables\n→ Answer: 2 page tables'
+},
+{
+  topic:'mem', badge:'qb-mem', label:'Memory Mgmt', type:'written',
+  source:'Quiz 3 – 191 (Q2) — Exact exam question',
+  text:`Given a virtual memory system with 32-bit addresses and 512-byte pages.
+
+(i) What is the page number (hex) of virtual address 0x0002099A?
+(ii) What is the offset (hex) within the page?
+(iii) Using segmentation: segment base = 0x10, offset = 0xFF → physical address?
+(iv) Two-level page tables, L1 has 2048 entries → how many page tables for a 2MB program?`,
+  solution:`(i) & (ii):
+512 bytes = 2⁹ → offset = 9 bits
+Page# = 0x0002099A >> 9
+
+0x0002099A = 133530 decimal
+133530 ÷ 512 = 260.8... → floor = 260 = 0x104
+Offset = 133530 mod 512 = 133530 - (260 × 512)
+       = 133530 - 133120 = 410 = 0x19A
+
+Page# = 0x104,  Offset = 0x19A
+
+(iii) Physical = Base + Offset = 0x10 + 0xFF = 0x10F
+
+(iv) 2MB / 512B = 4096 pages
+    4096 / 2048 (entries per L2) = 2 page tables`
+},
+
+// ===== CACHE =====
+{
+  topic:'cache', badge:'qb-cache', label:'Cache', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q6)',
+  text:'Name two cache memory organizations.',
+  options:[
+    'Write-through and write-back',
+    'Fully-associative, direct-mapped, N-way set-associative',
+    'L1 cache and L2 cache',
+    'Harvard and Von Neumann'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "Two Cache memory organizations are fully-associative, direct-mapped, N-way set-associative." Three are listed but any two are valid answers:\n• Fully-associative: block can go anywhere\n• Direct-mapped: each block maps to exactly one line\n• N-way set-associative: block maps to a set, any of N ways'
+},
+{
+  topic:'cache', badge:'qb-cache', label:'Cache', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q7)',
+  text:'What are the three types of cache misses?',
+  options:[
+    'Read miss, write miss, and instruction miss',
+    'L1 miss, L2 miss, and main memory miss',
+    'Compulsory (cold), conflict, and capacity misses',
+    'TLB miss, page miss, and cache miss'
+  ],
+  answer:2,
+  explain:'From Quiz 3-181 solution: "Two types of Cache misses are compulsory, conflict and capacity." (Note: the solution says "two" but lists three — the correct answer is three types, the 3 Cs):\n• Compulsory (cold): first access to any block — unavoidable\n• Conflict: multiple blocks compete for the same cache set\n• Capacity: working set exceeds total cache size'
+},
+{
+  topic:'cache', badge:'qb-cache', label:'Cache', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q8)',
+  text:'Given two-level cache L1 and L2. h1 = L1 hit rate, h2 = L2 hit rate. What is the formula for average memory access time?',
+  options:[
+    't_avg = t_L1 × h1 + t_L2 × h2',
+    't_avg = t_L1 + (1−h1)×t_L2 + (1−h1)(1−h2)×t_main',
+    't_avg = h1×t_L1 + (1−h1)×t_main',
+    't_avg = t_L1 + t_L2 + t_main'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "t_avg = t_L1 + (1-h1)t_L2 + (1-h1)(1-h2)t_main"\n\nInterpretation:\n• Always pay t_L1 (check L1 first)\n• On L1 miss (prob = 1-h1): also pay t_L2\n• On both L1 and L2 miss (prob = (1-h1)(1-h2)): pay t_main',
+  visual:'t_avg = t_L1 + (1-h1)×t_L2 + (1-h1)(1-h2)×t_main'
+},
+{
+  topic:'cache', badge:'qb-cache', label:'Cache', type:'mcq',
+  source:'Quiz 3 – 181 (fill-in-blank Q10)',
+  text:'What are two methods of reducing power consumption in a CPU?',
+  options:[
+    'Increase clock frequency and add more cache',
+    'Reduce power supply voltage, run at lower clock frequency, disable unused units, or disconnect from power supply',
+    'Use write-through cache and avoid TLB',
+    'Increase the number of pipeline stages'
+  ],
+  answer:1,
+  explain:'From Quiz 3-181 solution: "Two methods of reducing power consumption are: reduce power supply voltage, run at lower clock frequency, disable function units with control signals when not in use, disconnect parts from power supply when not in use."\n\nKey: P_dynamic = α×C×V²×f\n• Voltage reduction: quadratic effect (halving V reduces P by 4×)\n• Frequency reduction: linear effect\n• Clock gating: disable clocks to idle units\n• Power gating: disconnect power (eliminates leakage)'
+},
+
+// ===== PIC16F =====
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'mcq',
+  source:'Quiz 2 – 191 (fill-in-blank Q12)',
+  text:'The PICmicro PIC16F has a ___-bit PC and ___-bit word size.',
+  options:[
+    '8-bit PC, 8-bit word',
+    '13-bit PC, 14-bit word',
+    '16-bit PC, 16-bit word',
+    '11-bit PC, 8-bit word'
+  ],
+  answer:1,
+  explain:'From Quiz 2-191 solution: "The PICmicro PIC16F has a 13-bit PC and 14-bit word size."\n• 13-bit PC → can address up to 2¹³ = 8192 instruction locations\n• 14-bit instruction word (not 8-bit or 16-bit)\n• 8-bit data word (data registers are 8-bit wide)'
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'mcq',
+  source:'Quiz 2 – 191 (fill-in-blank Q13)',
+  text:'In the PICmicro PIC16F, the 8-level stack is used for:',
+  options:[
+    'Storing all local variables and parameters',
+    'Storing return addresses for CALL and RETURN instructions only',
+    'General-purpose data storage',
+    'Storing interrupt flags'
+  ],
+  answer:1,
+  explain:'From Quiz 2-191 solution: "an 8-level stack is used for storing return addresses during subroutine calls (CALL/RETURN)."\n\nKey distinction: The PIC stack is SEPARATE from data memory. It only stores program counter (return address) values — NOT data, not function parameters. Only 8 levels deep, so nesting too many CALL instructions causes overflow (old values are overwritten, it\'s circular).'
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'mcq',
+  source:'Quiz 2 – 191 (fill-in-blank Q14)',
+  text:'In the PICmicro PIC16F, indirect memory addressing is performed by taking an 8-bit indirect address from ___ and 1 bit ___ from the status register.',
+  options:[
+    '8 bits from PCL and 1 bit from PCLATH',
+    '8 bits from FSR and 1 bit IRP from the status register',
+    '8 bits from W register and 1 bit from the carry flag',
+    '8 bits from INDF and 1 bit from Z flag'
+  ],
+  answer:1,
+  explain:'From Quiz 2-191 solution: "indirect memory addressing is performed by taking an 8-bit indirect address from FSR (File Select Register) and 1 bit, IRP, from the status register."\n\n8 bits (FSR) + 1 bit (IRP) = 9-bit effective address → 2⁹ = 512 data memory locations\nAccessing INDF register automatically uses FSR+IRP for the actual address.'
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'written',
+  source:'Quiz 2 – 171 (Q2) — Exact exam question',
+  text:`Determine the content of register 0x27 after executing the following PIC16F assembly code:
+
+MOVLW 0xA7
+MOVWF 0x25
+MOVLW 4
+MOVWF 0x26
+CLRF 0x27
+NEXT:
+MOVF 0x25, w
+ANDLW 3
+ADDWF 0x27, f
+RRF 0x25, f
+RRF 0x25, f
+DECFSZ 0x26
+GOTO NEXT`,
+  solution:`Setup:
+  [0x25] = 0xA7 = 1010 0111 (binary)
+  [0x26] = 4 (loop counter)
+  [0x27] = 0 (accumulator)
+  Carry flag (C) = 0 initially (assume)
+
+Each iteration: take low 2 bits of [0x25], add to [0x27], then shift [0x25] right by 2 bits.
+Note: RRF shifts through carry bit. Carry out of previous RRF becomes MSB of next RRF.
+
+Iteration 1: [0x25] = 1010 0111
+  ANDLW 3: W = 0xA7 AND 0x03 = 0x03 (low 2 bits = 11)
+  ADDWF 0x27: [0x27] = 0 + 3 = 3
+  RRF [0x25]: C=0, 1010 0111 >> 1 = 0101 0011, C=1
+  RRF [0x25]: C=1, 0101 0011 >> 1 = 1010 1001, C=1
+  [0x25] = 0xA9 = 1010 1001
+
+Iteration 2: [0x25] = 1010 1001
+  W = 0xA9 AND 0x03 = 0x01 (low 2 bits = 01)
+  [0x27] = 3 + 1 = 4
+  RRF: C=1, 1010 1001 >> 1 = 1101 0100, C=1
+  RRF: C=1, 1101 0100 >> 1 = 1110 1010, C=0
+  [0x25] = 0xEA
+
+Iteration 3: [0x25] = 0xEA = 1110 1010
+  W = 0xEA AND 0x03 = 0x02 (low 2 bits = 10)
+  [0x27] = 4 + 2 = 6
+  RRF: C=0, 1110 1010 >> 1 = 0111 0101, C=0
+  RRF: C=0, 0111 0101 >> 1 = 0011 1010, C=1
+  [0x25] = 0x3A
+
+Iteration 4: [0x25] = 0x3A = 0011 1010
+  W = 0x3A AND 0x03 = 0x02 (low 2 bits = 10)
+  [0x27] = 6 + 2 = 8
+  DECFSZ: [0x26] = 0 → skip GOTO, loop ends
+
+Final answer: [0x27] = 0x08
+
+Note: This effectively extracts 2-bit groups from 0xA7 and sums them.
+0xA7 = 10|10|01|11 → groups (MSB first after shifting) = 2+2+1+3 = 8`
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'written',
+  source:'Quiz 2 – 191 (Q1.15) — Exact exam question',
+  text:`The content of register 0x27 after executing the following PIC16F assembly code is ___:
+
+MOVLW 0xB6
+MOVWF 0x25
+MOVLW 8
+MOVWF 0x26
+CLRF 0x27
+NEXT:
+BTFSC 0x25, 0
+INCF 0x27, f
+RRF 0x25, f
+DECFSZ 0x26
+GOTO NEXT`,
+  solution:`Setup:
+  [0x25] = 0xB6 = 1011 0110 (binary)
+  [0x26] = 8 (loop counter)
+  [0x27] = 0 (bit counter)
+
+This code counts the number of 1-bits in 0xB6 (popcount / Hamming weight).
+
+Each iteration:
+  BTFSC 0x25, 0  → skip next if bit 0 is CLEAR
+  INCF 0x27, f   → if bit 0 was SET, increment counter
+  RRF 0x25, f    → shift right (bring next bit to position 0)
+  DECFSZ 0x26    → count down; when 0, exit loop
+
+Tracing 0xB6 = 1011 0110:
+  Bit 0 = 0 → skip INCF. [0x27] = 0.  RRF → 0101 1011 (0x5B)
+  Bit 0 = 1 → INCF.      [0x27] = 1.  RRF → 0010 1101 (0x2D)
+  Bit 0 = 1 → INCF.      [0x27] = 2.  RRF → 0001 0110 (0x16)
+  Bit 0 = 0 → skip.      [0x27] = 2.  RRF → 0000 1011 (0x0B)
+  Bit 0 = 1 → INCF.      [0x27] = 3.  RRF → 0000 0101 (0x05)
+  Bit 0 = 1 → INCF.      [0x27] = 4.  RRF → 0000 0010 (0x02)
+  Bit 0 = 0 → skip.      [0x27] = 4.  RRF → 0000 0001 (0x01)
+  Bit 0 = 1 → INCF.      [0x27] = 5.  DECFSZ → 0, exit.
+
+Final answer: [0x27] = 5
+
+Verification: 0xB6 = 1011 0110 → 1-bits at positions 7,5,4,2,1 = 5 ones ✓`
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'mcq',
+  source:'Conceptual',
+  text:'What is the difference between BTFSC and BTFSS instructions in PIC16F?',
+  options:[
+    'BTFSC tests bit 0 only; BTFSS tests any bit',
+    'BTFSC skips the next instruction if the tested bit is Clear (0); BTFSS skips if the bit is Set (1)',
+    'BTFSC clears the bit; BTFSS sets the bit',
+    'BTFSC works on W register; BTFSS works on file registers'
+  ],
+  answer:1,
+  explain:'BTFSC = Bit Test File, Skip if Clear → skip next instruction if bit = 0\nBTFSS = Bit Test File, Skip if Set → skip next instruction if bit = 1\n\nCommon pattern:\n  BTFSC STATUS, Z   ; test zero flag\n  GOTO zero_case    ; skipped if Z=0, taken if Z=1\n\nThese are the conditional branching instructions in PIC — there is no CMP/branch like ARM.',
+  visual:'BTFSC f, b:  if (f[b] == 0) skip next instruction\nBTFSS f, b:  if (f[b] == 1) skip next instruction'
+},
+{
+  topic:'pic', badge:'qb-pic', label:'PIC16F', type:'mcq',
+  source:'Conceptual',
+  text:'In PIC16F, the instruction RRF f, d performs a rotate right through the carry bit. If [0x25] = 0b10110101 and C = 0 before the instruction, what is the result in f and the new C?',
+  options:[
+    'f = 0b01011010, C = 0',
+    'f = 0b01011010, C = 1',
+    'f = 0b11011010, C = 1',
+    'f = 0b01111010, C = 0'
+  ],
+  answer:1,
+  explain:'RRF rotates right THROUGH the carry bit (9-bit rotation: C|[7:0]).\n\nBefore: C=0, f = 1011 0101\nRotate 9 bits right by 1: new_C = f[0] = 1\n                          new_f = C|f[7:1] = 0|101 1010 = 0101 1010\n\nResult: f = 0b01011010 = 0x5A, C = 1\n\nKey: RLF/RRF rotate through carry — the carry flag is part of the rotation!',
+  visual:'Before: C=0  |  1011 0101\nRotate right by 1:\nAfter:  C=1  |  0101 1010\n(LSB of f → C, C → MSB of f)'
+},
+
+];
+
+// Rendering
+let answered = {};
+let totalCorrect = 0;
+let totalAnswered = 0;
+
+function renderQuiz(filter) {
+  const container = document.getElementById('quiz-container');
+  const list = filter === 'all' ? questions : questions.filter(q => q.topic === filter);
+  if (list.length === 0) { container.innerHTML = '<div class="no-questions">No questions for this topic.</div>'; return; }
+
+  container.innerHTML = list.map((q, i) => {
+    const gi = questions.indexOf(q);
+    const ans = answered[gi];
+    const isWritten = q.type === 'written';
+    const isRevealed = !!ans && ans.type === 'revealed';
+    const isMCQ = q.type === 'mcq';
+
+    return `
+    <div class="q-card topic-${q.topic}" id="qcard-${gi}">
+      <div class="q-top">
+        <div>
+          <span class="q-badge ${q.badge}">${q.label}</span>
+          <div class="q-source">${q.source}</div>
+        </div>
+        <span class="q-num">Q${i+1}</span>
+      </div>
+      <div class="q-text">${q.text.replace(/\n/g,'<br>')}</div>
+      ${isWritten ? `
+        <button class="reveal-btn ${isRevealed?'revealed':''}" id="rbtn-${gi}" onclick="revealSolution(${gi})">${isRevealed?'✓ Solution revealed':'👁 Show Solution'}</button>
+        <div class="q-explain ${isRevealed?'show':''}" id="exp-${gi}">
+          <strong>Solution:</strong><br>
+          <div class="visual">${q.solution}</div>
+        </div>
+      ` : `
+        <div class="options" id="opts-${gi}">
+          ${q.options.map((opt, oi) => {
+            let cls = '', icon = '○';
+            if (ans && ans.type === 'mcq') {
+              if (oi === q.answer) { cls = 'correct'; icon = '✓'; }
+              else if (oi === ans.choice && ans.choice !== q.answer) { cls = 'wrong'; icon = '✗'; }
+            }
+            return `<button class="opt-btn ${cls}" ${ans?'disabled':''} onclick="selectMCQ(${gi},${oi})"><span class="opt-icon">${icon}</span>${opt}</button>`;
+          }).join('')}
+        </div>
+        <div class="q-explain ${ans && ans.type==='mcq'?'show':''}" id="exp-${gi}">
+          <strong>Explanation:</strong><br>${(q.explain||'').replace(/\n/g,'<br>')}
+          ${q.visual ? `<div class="visual">${q.visual}</div>` : ''}
+        </div>
+      `}
+    </div>`;
+  }).join('');
+  updateScore();
+}
+
+function revealSolution(gi) {
+  if (answered[gi]) return;
+  answered[gi] = {type:'revealed'};
+  document.getElementById('rbtn-'+gi).textContent = '✓ Solution revealed';
+  document.getElementById('rbtn-'+gi).classList.add('revealed');
+  document.getElementById('exp-'+gi).classList.add('show');
+  totalAnswered++;
+  updateScore();
+}
+
+function selectMCQ(gi, choice) {
+  if (answered[gi]) return;
+  const q = questions[gi];
+  answered[gi] = {type:'mcq', choice};
+  if (choice === q.answer) totalCorrect++;
+  totalAnswered++;
+  const btns = document.querySelectorAll(`#opts-${gi} .opt-btn`);
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) { btn.classList.add('correct'); btn.querySelector('.opt-icon').textContent = '✓'; }
+    else if (i === choice && choice !== q.answer) { btn.classList.add('wrong'); btn.querySelector('.opt-icon').textContent = '✗'; }
+  });
+  document.getElementById('exp-'+gi).classList.add('show');
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('score-display').textContent = totalCorrect + ' / ' + totalAnswered;
+  const pct = totalAnswered === 0 ? 0 : Math.round(totalCorrect/totalAnswered*100);
+  document.getElementById('score-fill').style.width = pct + '%';
+}
+
+function filterQuiz(topic, btn) {
+  document.querySelectorAll('.quiz-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderQuiz(topic);
+}
+
+renderQuiz('all');
+</script>
+</body>
+</html>
