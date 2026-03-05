@@ -791,10 +791,10 @@ loop:
       <p class="desc">Stack grows downward conventionally. SP either points to last occupied (Full) or next free (Empty) location.</p>
       <table class="tbl mint-hd">
         <tr><th>Stack Alias</th><th>Equivalent</th><th>SP type</th></tr>
-        <tr><td class="mono">STMFD/LDMFD</td><td>STMDB/LDMIA</td><td>Full Descending ← standard</td></tr>
-        <tr><td class="mono">STMED/LDMED</td><td>STMDA/LDMIB</td><td>Empty Descending</td></tr>
-        <tr><td class="mono">STMFA/LDMFA</td><td>STMIB/LDMDA</td><td>Full Ascending</td></tr>
-        <tr><td class="mono">STMEA/LDMEA</td><td>STMIA/LDMDB</td><td>Empty Ascending</td></tr>
+        <tr><td class="mono">STMFD/LDMFD</td><td>STMDB/LDMDB</td><td>Full Descending ← standard</td></tr>
+        <tr><td class="mono">STMED/LDMED</td><td>STMDA/LDMDA</td><td>Empty Descending</td></tr>
+        <tr><td class="mono">STMFA/LDMFA</td><td>STMIB/LDMIB</td><td>Full Ascending</td></tr>
+        <tr><td class="mono">STMEA/LDMEA</td><td>STMIA/LDMIA</td><td>Empty Ascending</td></tr>
       </table>
       <pre style="margin-top:.8rem"><span style="color:#7a6a8a">; Standard subroutine prologue/epilogue:</span>
 STMFD sp!, {r0-r12, lr} <span style="color:#7a6a8a">; save + return addr</span>
